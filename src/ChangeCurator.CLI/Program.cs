@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using ChangeCurator.CLI.ActionArgs;
+using ChangeCurator.SDK.Actions;
+using ChangeCurator.SDK.Models;
 using CommandLine;
 
 namespace ChangeCurator.CLI
@@ -39,13 +41,19 @@ namespace ChangeCurator.CLI
 
         private static void ExecAction(object obj)
         {
+            IAction action = null;
+
             switch (obj)
             {
                 case InitArgs args:
+                    var settings = new InitSettings(args.ProjectName, args.FilePath, args.IssueUrl);
+                    action = new InitAction(settings);
                     break;
                 case AddArgs args:
                     break;
             }
+
+            action.Execute();
         }
 
         private static void DisplayHelp(IEnumerable<Error> errors, TextWriter helpWriter)

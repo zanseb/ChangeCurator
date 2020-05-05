@@ -1,7 +1,8 @@
 {
   "profiles": {
     "ChangeCurator.CLI": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "init -p test -d C:\\Users\\sebastian.zanoni\\Repositories\\ChangeCurator"
     }
   }
 }
