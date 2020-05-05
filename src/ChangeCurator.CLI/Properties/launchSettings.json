@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "ChangeCurator.CLI": {
+      "commandName": "Project"
+    }
+  }
+}
