@@ -9,7 +9,7 @@ namespace ChangeCurator.CLI.ActionArgs
         public string ProjectName { get; set; }
 
         [Option('d', "directory", Required = true, HelpText = "The root of the directory")]
-        public string FilePath { get; set; }
+        public string RootDirectory { get; set; }
 
         [Option('u', "url", HelpText = "The url which has to be prefixed to the issue identifier")]
         public string IssueUrl { get; set; }

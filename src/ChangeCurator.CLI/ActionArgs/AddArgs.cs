@@ -1,4 +1,4 @@
-﻿using ChangeCurator.SDK;
+﻿using ChangeCurator.SDK.Core;
 using CommandLine;
 
 namespace ChangeCurator.CLI.ActionArgs
