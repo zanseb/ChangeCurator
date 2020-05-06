@@ -46,7 +46,7 @@ namespace ChangeCurator.CLI
             switch (obj)
             {
                 case InitArgs args:
-                    var settings = new InitSettings(args.ProjectName, args.FilePath, args.IssueUrl);
+                    var settings = new ProjectSettings(args.ProjectName, args.RootDirectory, args.IssueUrl);
                     action = new InitAction(settings);
                     break;
                 case AddArgs args:

@@ -4,18 +4,18 @@ using System.Text;
 
 namespace ChangeCurator.SDK.Models
 {
-    public class InitSettings
+    public class ProjectSettings
     {
         public string ProjectName { get; }
 
-        public string FilePath { get; }
+        public string RootDirectory { get; }
 
         public string IssueUrl { get; }
 
-        public InitSettings(string projectName, string filePath, string issueUrl)
+        public ProjectSettings(string projectName, string rootDirectory, string issueUrl)
         {
             ProjectName = projectName;
-            FilePath = filePath;
+            RootDirectory = rootDirectory;
             IssueUrl = issueUrl;
         }
     }

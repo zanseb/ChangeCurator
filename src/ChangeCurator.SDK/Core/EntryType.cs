@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChangeCurator.SDK
+﻿namespace ChangeCurator.SDK.Core
 {
     public enum EntryType
     {
