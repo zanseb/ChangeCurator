@@ -28,7 +28,11 @@ namespace ChangeCurator.SDK.Core
             Directory.CreateDirectory(configPath);
             Directory.CreateDirectory(changelogEntriesPath);
             File.Create(trackDirectoryFilePath).Dispose();
-            File.Create(changelogFilePath).Dispose();
+
+            if (!File.Exists(changelogFilePath))
+            {
+                File.Create(changelogFilePath).Dispose();
+            }
 
             SaveProjectConfiguration(settings);
         }
