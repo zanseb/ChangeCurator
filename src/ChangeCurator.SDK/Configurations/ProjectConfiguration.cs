@@ -1,5 +1,7 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
+using ChangeCurator.SDK.Core;
 using ChangeCurator.SDK.Models;
 
 namespace ChangeCurator.SDK.Configurations
@@ -10,15 +12,9 @@ namespace ChangeCurator.SDK.Configurations
         private const string ProjectNameKey = "ProjectName";
         private const string ProjectIssueUrlKey = "IssueUrl";
 
-        internal void SaveConfiguration(ProjectSettings settings)
+        internal void SaveProjectSettings(ProjectSettings settings)
         {
-            string configPath = Path.Combine(settings.RootDirectory, ProjectStructureConfig.ToolDirectory, ConfigFileName);
-            var fileMap = new ExeConfigurationFileMap()
-            {
-                ExeConfigFilename = configPath,
-            };
-
-            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+            Configuration config = GetConfigurationFile(settings.RootDirectory);
 
             config.AppSettings.Settings.Add(new KeyValueConfigurationElement(ProjectNameKey, settings.ProjectName));
             config.AppSettings.Settings.Add(new KeyValueConfigurationElement(ProjectIssueUrlKey, settings.IssueUrl));
@@ -26,9 +22,32 @@ namespace ChangeCurator.SDK.Configurations
             config.Save();
         }
 
-        internal ProjectSettings GetConfiguration()
+        internal ProjectSettings GetProjectSettings()
         {
-            return null;
+            string workingDirectory = Directory.GetCurrentDirectory();
+            Configuration config = GetConfigurationFile(workingDirectory);
+            if (!config.HasFile)
+            {
+                throw new ProjectSettingsNotFoundException("Project not initialized properly");
+            }
+
+            return new ProjectSettings(
+                config.AppSettings.Settings[ProjectNameKey].Value,
+                workingDirectory,
+                config.AppSettings.Settings[ProjectIssueUrlKey].Value
+                );
+        }
+
+        private Configuration GetConfigurationFile(string currentDirectory)
+        {
+            var configPath = Path.Combine(currentDirectory, ProjectStructureConstants.ToolDirectory, ConfigFileName);
+
+            var fileMap = new ExeConfigurationFileMap()
+            {
+                ExeConfigFilename = configPath,
+            };
+
+            return ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
         }
     }
 }

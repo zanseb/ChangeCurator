@@ -50,6 +50,8 @@ namespace ChangeCurator.CLI
                     action = new InitAction(settings);
                     break;
                 case AddArgs args:
+                    var changeLogEntry = new ChangeLogEntry(args.Description, args.Author, args.IssueId, args.Type);
+                    action = new AddAction(changeLogEntry);
                     break;
             }
 
