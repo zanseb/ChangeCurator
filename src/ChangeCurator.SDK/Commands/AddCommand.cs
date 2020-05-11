@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ChangeCurator.SDK.Configurations;
+﻿using ChangeCurator.SDK.Configurations;
 using ChangeCurator.SDK.Core;
 using ChangeCurator.SDK.Models;
 
-namespace ChangeCurator.SDK.Actions
+namespace ChangeCurator.SDK.Commands
 {
-    public class AddAction : IAction
+    public class AddCommand : ICommand
     {
         private readonly ChangeLogEntry changlogEntry;
 
-        public AddAction(ChangeLogEntry changlogEntry)
+        public AddCommand(ChangeLogEntry changlogEntry)
         {
             this.changlogEntry = changlogEntry;
         }

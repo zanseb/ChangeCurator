@@ -1,16 +1,13 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
-using ChangeCurator.SDK.Core;
+﻿using ChangeCurator.SDK.Core;
 using ChangeCurator.SDK.Models;
 
-namespace ChangeCurator.SDK.Actions
+namespace ChangeCurator.SDK.Commands
 {
-    public class InitAction : IAction
+    public class InitCommand : ICommand
     {
         private readonly ProjectSettings settings;
 
-        public InitAction(ProjectSettings settings)
+        public InitCommand(ProjectSettings settings)
         {
             this.settings = settings;
         }
