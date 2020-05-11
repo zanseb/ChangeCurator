@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ChangeCurator.SDK.Configurations;
+using ChangeCurator.SDK.Core;
 using ChangeCurator.SDK.Models;
 
 namespace ChangeCurator.SDK.Actions
@@ -20,8 +21,8 @@ namespace ChangeCurator.SDK.Actions
             var configuration = new ProjectConfiguration();
             ProjectSettings settings = configuration.GetProjectSettings();
 
-            // TODO: Generate file content (yaml) with all information contained in changlogEntry
-            // TODO: Save content to file
+            var repository = new ChangeLogEntryRepository(settings);
+            repository.SaveChangelogEntry(changlogEntry);
         }
     }
 }
