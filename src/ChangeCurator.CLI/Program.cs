@@ -41,21 +41,27 @@ namespace ChangeCurator.CLI
 
         private static void ExecAction(object obj)
         {
-            ICommand action = null;
+            ICommand command = null;
 
             switch (obj)
             {
                 case InitArgs args:
                     var settings = new ProjectSettings(args.ProjectName, args.RootDirectory, args.IssueUrl);
-                    action = new InitCommand(settings);
+                    command = new InitCommand(settings);
                     break;
                 case AddArgs args:
                     var changeLogEntry = new ChangeLogEntry(args.Description, args.Author, args.IssueId, args.Type);
-                    action = new AddCommand(changeLogEntry);
+                    command = new AddCommand(changeLogEntry);
+                    break;
+                case MergeArgs _:
+                    command = new MergeCommand();
                     break;
             }
 
-            action.Execute();
+            if(command != null)
+            {
+                command.Execute();
+            }
         }
 
         private static void DisplayHelp(IEnumerable<Error> errors, TextWriter helpWriter)
