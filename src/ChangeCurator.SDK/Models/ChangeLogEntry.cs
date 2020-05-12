@@ -7,13 +7,18 @@ namespace ChangeCurator.SDK.Models
 {
     public class ChangeLogEntry
     {
-        public string Description { get; }
+        public string Description { get; set; }
 
-        public string Author { get; }
+        public string Author { get; set; }
 
-        public string IssueId { get; }
+        public string IssueId { get; set; }
 
-        public EntryType Type { get; }
+        public EntryType Type { get; set; }
+
+        public ChangeLogEntry()
+        {
+
+        }
 
         public ChangeLogEntry(string description, string author, string issueId, EntryType entryType)
         {

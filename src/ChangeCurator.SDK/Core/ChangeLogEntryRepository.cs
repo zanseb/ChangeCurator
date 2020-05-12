@@ -37,7 +37,21 @@ namespace ChangeCurator.SDK.Core
 
         internal IEnumerable<ChangeLogEntry> GetChangelogEntries()
         {
-            return null;
+            var deserializer = new DeserializerBuilder()
+                .Build();
+
+            string[] files = Directory.GetFiles(Path.Join(settings.RootDirectory, ProjectStructureConstants.ChangelogEntriesDirectory), "*.yml");
+
+            var changelogEntries = new List<ChangeLogEntry>();
+            foreach (var file in files)
+            {
+                var fileContent = File.ReadAllText(file);
+                var changelogEntry = deserializer.Deserialize<ChangeLogEntry>(fileContent);
+
+                changelogEntries.Add(changelogEntry);
+            }
+
+            return changelogEntries;
         }
 
         internal void DeleteChangelogEntries()

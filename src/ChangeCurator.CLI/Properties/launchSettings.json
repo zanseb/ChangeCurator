@@ -2,7 +2,7 @@
   "profiles": {
     "ChangeCurator.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "add -d hoi -a sebastian zanoni -i FM5-129 -t Added"
+      "commandLineArgs": "merge"
     }
   }
 }
