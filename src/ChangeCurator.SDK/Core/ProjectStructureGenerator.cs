@@ -20,15 +20,19 @@ namespace ChangeCurator.SDK.Core
 
         private void GenerateProjectStructure(ProjectSettings settings)
         {
-            string configPath = Path.Combine(settings.RootDirectory, ProjectStructureConfig.ToolDirectory);
-            string changelogEntriesPath = Path.Combine(settings.RootDirectory, ProjectStructureConfig.ChangelogEntriesDirectory);
+            string configPath = Path.Combine(settings.RootDirectory, ProjectStructureConstants.ToolDirectory);
+            string changelogEntriesPath = Path.Combine(settings.RootDirectory, ProjectStructureConstants.ChangelogEntriesDirectory);
             string trackDirectoryFilePath = Path.Combine(changelogEntriesPath, ".keep");
-            string changelogFilePath = Path.Combine(settings.RootDirectory, ProjectStructureConfig.ChangelogFileName);
+            string changelogFilePath = Path.Combine(settings.RootDirectory, ProjectStructureConstants.ChangelogFileName);
 
             Directory.CreateDirectory(configPath);
             Directory.CreateDirectory(changelogEntriesPath);
             File.Create(trackDirectoryFilePath).Dispose();
-            File.Create(changelogFilePath).Dispose();
+
+            if (!File.Exists(changelogFilePath))
+            {
+                File.Create(changelogFilePath).Dispose();
+            }
 
             SaveProjectConfiguration(settings);
         }
@@ -36,7 +40,7 @@ namespace ChangeCurator.SDK.Core
         private void SaveProjectConfiguration(ProjectSettings settings)
         {
             var configuration = new ProjectConfiguration();
-            configuration.SaveConfiguration(settings);
+            configuration.SaveProjectSettings(settings);
         }
     }
 }

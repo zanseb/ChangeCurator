@@ -2,7 +2,7 @@
 
 namespace ChangeCurator.SDK.Configurations
 {
-    internal static class ProjectStructureConfig
+    internal static class ProjectStructureConstants
     {
         internal const string ToolDirectory = ".cc";
         internal const string ChangelogFileName = "CHANGELOG.md";

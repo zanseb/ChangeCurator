@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using ChangeCurator.CLI.ActionArgs;
-using ChangeCurator.SDK.Actions;
+using ChangeCurator.SDK.Commands;
 using ChangeCurator.SDK.Models;
 using CommandLine;
 
@@ -41,15 +41,17 @@ namespace ChangeCurator.CLI
 
         private static void ExecAction(object obj)
         {
-            IAction action = null;
+            ICommand action = null;
 
             switch (obj)
             {
                 case InitArgs args:
                     var settings = new ProjectSettings(args.ProjectName, args.RootDirectory, args.IssueUrl);
-                    action = new InitAction(settings);
+                    action = new InitCommand(settings);
                     break;
                 case AddArgs args:
+                    var changeLogEntry = new ChangeLogEntry(args.Description, args.Author, args.IssueId, args.Type);
+                    action = new AddCommand(changeLogEntry);
                     break;
             }
 

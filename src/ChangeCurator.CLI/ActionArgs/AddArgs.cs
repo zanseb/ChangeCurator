@@ -7,7 +7,7 @@ namespace ChangeCurator.CLI.ActionArgs
     class AddArgs
     {
         [Option('d', "description", Required = true, HelpText = "The description of the changelog entry")]
-        public string Title { get; set; }
+        public string Description { get; set; }
 
         [Option('a', "author", HelpText = "The author of the changelog entry")]
         public string Author { get; set; }
