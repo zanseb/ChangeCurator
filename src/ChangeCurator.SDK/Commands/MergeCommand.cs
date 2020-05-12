@@ -19,7 +19,7 @@ namespace ChangeCurator.SDK.Commands
             var repository = new ChangeLogEntryRepository(settings);
             IEnumerable<ChangeLogEntry> entries = repository.GetChangelogEntries();
 
-            var changelogContent = new ChangeLogBuilder()
+            var changelogContent = new ChangeLogBuilder(settings)
                 .WithContent(sourceContent)
                 .WithEntries(entries)
                 .Build();
