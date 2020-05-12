@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ChangeCurator.CLI.ActionArgs;
+using ChangeCurator.CLI.CommandArgs;
 using ChangeCurator.SDK.Commands;
 using ChangeCurator.SDK.Models;
 using CommandLine;

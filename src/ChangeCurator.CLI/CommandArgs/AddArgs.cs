@@ -1,7 +1,7 @@
 ﻿using ChangeCurator.SDK.Core;
 using CommandLine;
 
-namespace ChangeCurator.CLI.ActionArgs
+namespace ChangeCurator.CLI.CommandArgs
 {
     [Verb("add", HelpText = "Add changelog entry")]
     class AddArgs
