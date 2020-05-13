@@ -56,7 +56,12 @@ namespace ChangeCurator.SDK.Core
 
         internal void DeleteChangelogEntries()
         {
+            string[] files = Directory.GetFiles(Path.Join(settings.RootDirectory, ProjectStructureConstants.ChangelogEntriesDirectory), "*.yml");
 
+            foreach (var file in files)
+            {
+                File.Delete(file);
+            }
         }
     }
 }
