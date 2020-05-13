@@ -9,23 +9,23 @@ namespace ChangeCurator.SDK.Core
     internal class ChangeLogBuilder
     {
         private readonly ProjectSettings settings;
-        private StringBuilder content;
+        private string changeLogContent;
         private IEnumerable<ChangeLogEntry> entries;
 
         public ChangeLogBuilder(ProjectSettings settings)
         {
-            content = new StringBuilder();
+            changeLogContent = string.Empty;
             this.settings = settings;
         }
 
         internal ChangeLogBuilder WithContent(string sourceContent)
         {
-            if (content.Length != 0)
+            if (changeLogContent != string.Empty)
             {
                 throw new InvalidOperationException();
             }
 
-            content.Append(sourceContent);
+            changeLogContent = sourceContent;
 
             return this;
         }
@@ -41,9 +41,20 @@ namespace ChangeCurator.SDK.Core
         {
             string unreleasedSection = GenerateUnreleasedSection();
 
-            content.Insert(0, unreleasedSection);
+            int lastSection = changeLogContent.IndexOf("##");
 
-            return content.ToString();
+            if (lastSection > 0)
+            {
+                changeLogContent = changeLogContent.Insert(lastSection, unreleasedSection);
+            }
+            else
+            {
+                string header = GenerateDefaultChangeLogHeader();
+                changeLogContent = changeLogContent.Insert(0, header);
+                changeLogContent = changeLogContent.Insert(header.Length, unreleasedSection);
+            }
+
+            return changeLogContent;
         }
 
         private string GenerateUnreleasedSection()
@@ -101,6 +112,16 @@ namespace ChangeCurator.SDK.Core
             unreleasedSection.AppendLine();
 
             return unreleasedSection.ToString();
+        }
+
+        private string GenerateDefaultChangeLogHeader()
+        {
+            return @"# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+";
         }
     }
 }
