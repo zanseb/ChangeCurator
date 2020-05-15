@@ -23,3 +23,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack src/ChangeCurator.CLI/ChangeCurator.CLI.csproj --output packages --configuration Release
+    - name: Push
+      run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
