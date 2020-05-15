@@ -1,11 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Version>0.0.1</Version>
     <Copyright></Copyright>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>cc</ToolCommandName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Sebastian Zanoni</Authors>
+    <Company />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ChangeCurator.CLI</PackageId>
+    <PackageProjectUrl>https://github.com/zanseb/ChangeCurator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zanseb/ChangeCurator</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>changelog, changelog-formatter, changelog-generator</PackageTags>
+    <NeutralLanguage></NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
