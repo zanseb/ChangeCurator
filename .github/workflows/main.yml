@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  create:
+    tags:
+      - release/*
 
 jobs:
   build:
@@ -25,5 +28,10 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
       run: dotnet pack src/ChangeCurator.CLI/ChangeCurator.CLI.csproj --output packages --configuration Release
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ChangeCurator.CLI
+        path: packages/ChangeCurator.CLI*.nupkg
     - name: Push
+      if: contains(github.ref, 'release')
       run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
