@@ -2,6 +2,8 @@
 
 Responsible for managing all changelog relevant stuff
 
+[![Nuget](https://img.shields.io/nuget/v/ChangeCurator.CLI)](https://www.nuget.org/packages/ChangeCurator.CLI/)
+
 ## What is this?
 
 This tool is heavily inspired by [GitLab's workflow](https://docs.gitlab.com/ee/development/changelog.html) on how to manage a changelog file on a project with multiple contributors.
