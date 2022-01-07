@@ -1,8 +1,7 @@
 {
   "profiles": {
     "ChangeCurator.CLI": {
-      "commandName": "Project",
-      "commandLineArgs": "merge"
+      "commandName": "Project"
     }
   }
 }
