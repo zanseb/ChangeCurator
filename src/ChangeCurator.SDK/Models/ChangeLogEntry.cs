@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ChangeCurator.SDK.Core;
+﻿using ChangeCurator.SDK.Core;
+
+using YamlDotNet.Serialization;
 
 namespace ChangeCurator.SDK.Models
 {
@@ -11,6 +10,7 @@ namespace ChangeCurator.SDK.Models
 
         public string Author { get; set; }
 
+        [YamlMember(Alias = "Issue")]
         public string IssueId { get; set; }
 
         public EntryType Type { get; set; }
